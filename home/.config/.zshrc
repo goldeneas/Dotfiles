@@ -116,3 +116,12 @@ if ! command -v mise &> /dev/null; then
     curl https://mise.run | sh
 fi
 eval "$(mise activate zsh)"
+
+. "$HOME/.cargo/env"
+
+eval "$(~/.local/bin/mise activate)"
+
+# Import files with secrets
+[ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
+
+export PATH="opt/homebrew/opt/postgresql@18/bin:$PATH"
