@@ -102,6 +102,9 @@ source $ZSH/oh-my-zsh.sh
 
 # CUSTOM
 
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="opt/homebrew/opt/postgresql@18/bin:$PATH"
+
 # autorun tmux on start
 # check if tmux is available
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
@@ -115,13 +118,9 @@ if ! command -v mise &> /dev/null; then
     echo "installing mise"
     curl https://mise.run | sh
 fi
+
 eval "$(mise activate zsh)"
-
-. "$HOME/.cargo/env"
-
 eval "$(~/.local/bin/mise activate)"
 
 # Import files with secrets
 [ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
-
-export PATH="opt/homebrew/opt/postgresql@18/bin:$PATH"
